@@ -1,6 +1,6 @@
 ---
 name: agent-teams-development
-description: Use when executing an implementation plan using Claude Code's native agent teams — propose a team composition, get user approval, then kick off the native agent teams feature
+description: Use when executing an implementation plan using Claude Code's native agent teams feature — tasks span independent domains that benefit from parallel execution by domain-specialist teammates
 ---
 
 # Agent Teams Development
@@ -36,7 +36,7 @@ Before proposing a team:
 }
 ```
 
-Add this to `~/.claude/settings.json` or pass as an environment variable. Ask the user to confirm it is set before continuing.
+Add this to `~/.claude/settings.json` or pass as an environment variable. Ask the user to confirm it is set before continuing. If it is not set, stop and direct the user to add it — do not attempt to set it automatically.
 
 Do NOT proceed to Phase 1 until both prerequisites are confirmed.
 
@@ -102,4 +102,20 @@ The skill's job ends here. Claude Code's native agent teams feature handles all 
 
 ## After Teams Complete
 
+Add the following to the end of the kickoff prompt so the team lead handles this when work is done:
+
+```
 When all teammates have finished and the team is cleaned up, invoke `superpowers:finishing-a-development-branch`.
+```
+
+## Integration
+
+**Required before this skill:**
+- **superpowers:using-git-worktrees** — REQUIRED: active worktree must exist before starting
+- **superpowers:writing-plans** — creates the implementation plan this skill executes
+
+**Invoked by:**
+- **superpowers:writing-plans** — offers this skill as the "Agent Teams" execution option
+
+**After teams complete:**
+- **superpowers:finishing-a-development-branch** — included in kickoff prompt for team lead to invoke when done

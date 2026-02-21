@@ -1,1 +1,1 @@
-I have a finished implementation plan with frontend and backend tasks. Let's use agent teams to execute it in parallel.
+I have a finished implementation plan with tasks across frontend, backend, and tests. The domains are independent — I want to run them in parallel and have the implementers coordinate on the API contract.
