@@ -7,7 +7,7 @@ description: Use when executing an implementation plan using Claude Code's nativ
 
 Analyze an implementation plan, propose a team of domain-specialist teammates, get user approval, then hand off to Claude Code's native agent teams feature.
 
-**Announce at start:** "Using agent-teams-development skill to propose an agent team for this plan."
+**Announce at start:** "Using agent-teams-development skill to propose an agent team composition and kick off implementation."
 
 ## When to Use
 
@@ -16,6 +16,10 @@ Best when the plan has tasks across independent domains that benefit from parall
 Not ideal for small plans or tightly coupled tasks — subagent-driven-development is more efficient there.
 
 Agent teams use significantly more tokens than a single session. Each teammate is a separate Claude instance with its own context window.
+
+<HARD-GATE>
+Do NOT kick off the agent team or issue any kickoff prompt until the user has explicitly accepted the proposed team composition. This applies regardless of how clear the task breakdown seems.
+</HARD-GATE>
 
 ## Prerequisites
 
@@ -33,6 +37,8 @@ Before proposing a team:
 ```
 
 Add this to `~/.claude/settings.json` or pass as an environment variable. Ask the user to confirm it is set before continuing.
+
+Do NOT proceed to Phase 1 until both prerequisites are confirmed.
 
 ## Phase 1: Propose a Team
 
@@ -86,7 +92,9 @@ Require plan approval before each teammate begins implementing.
 
 The skill's job ends here. Claude Code's native agent teams feature handles all team creation, teammate spawning, the shared task list, peer-to-peer communication, and coordination.
 
-## What This Skill Does NOT Do
+## Red Flags
+
+**Never:**
 
 - Call TeamCreate, Task (with team_name), SendMessage, TaskCreate, or any agent team tools directly
 - Orchestrate or monitor the team after kickoff
