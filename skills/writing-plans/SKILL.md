@@ -104,7 +104,7 @@ After saving the plan, offer execution choice:
 
 **2. Parallel Session (separate)** - Open new session with executing-plans, batch execution with checkpoints
 
-**3. Agent Teams (parallel, collaborative)** - Teammates own domains and work concurrently with peer-to-peer communication. Requires `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1`.
+**3. Agent Teams (parallel sessions)** - Teammates own independent domains and communicate peer-to-peer
 
 **Which approach?"**
 
@@ -119,3 +119,5 @@ After saving the plan, offer execution choice:
 
 **If Agent Teams chosen:**
 - **REQUIRED SUB-SKILL:** Use superpowers:agent-teams-development
+- Requires `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1` in settings.json
+- Propose team → user approves → hand off to native agent teams
